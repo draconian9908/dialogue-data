@@ -1,0 +1,11 @@
+# dialogue-data
+Gathering, cleaning, and organizing data for use in a gender classifier utilizing movie dialogue. Made for the final project in Machine Learning, Fall 2019.
+
+## Structure
+Scripts in the root directory gather, parse, clean, and organize movie script data. Files in /data are either reports on the gathering process, interim data files for going between scripts, or final data files. All files in /data/texts are raw movie scripts.
+
+## Files
+`parse.py` is an adapted script (original [here](https://github.com/AnnaVM/Project_Plotline/blob/master/code/scraping_script.py) for parsing IMSDB (Internet Movie Script Data Base), which outputs the all the files in /data/texts and the files successful_files.csv and movies_pdf_script.csv in /data. `split.py` finds the movie scripts for a specified genre and pulls out supposed character names, assigns the characters a gender based on their name, and assigns them their dialogue, which outputs the file Horror_data.csv in /data. Gender assignment is done using [gender_guesser](https://pypi.org/project/gender-guesser/), and the process also removes "names" that aren't actually names. One fault of this script is that if there are multiple characters across all the selected movies that have the smae name, they are treated as one character. `analysis_v2.py` cleans the dialogue, removing punctuation, tabs, and newlines, changes gener assignments to numbers, and splits the data into chunks that are then saved to files. This outputs the files Horror_all.csv, Horror_try_train.csv, Horror_try_test.csv, Horror_train.csv, Horror_test.csv, and Horror_g_count.txt in /data. Due to time constraints, the genre was hardcoded as "Horror" in `split.py` and `analysis_v2.py`. `analysis.py` was an earlier attempt at performing machine learning, which started turning into the data manipulation performed in `analysis_v2.py` but was abandoned in favor of starting from scratch to reduce confusion. *This file can be ignored, and was kept for documentation purposes.*
+
+## Machine Learning
+The actual machine learning performed with this data is done in a Google Colab notebook, located [here](https://colab.research.google.com/drive/1Hj-nxmWfWR4IhqQXwNr9J5Vpyy_0KkEs) (https://colab.research.google.com/drive/1Hj-nxmWfWR4IhqQXwNr9J5Vpyy_0KkEs). This also contains a little bit of discussion about the results.
